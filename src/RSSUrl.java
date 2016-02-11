@@ -1,29 +1,29 @@
 import java.net.*;
 
 public class RSSUrl {
-	private URL urli;
+	private URL url;
 	
-	public RSSUrl(Valinta x) throws MalformedURLException {
-		String osoite = "";
+	public RSSUrl(Choice x) throws MalformedURLException {
+		String address = "";
 		switch (x) {
 			case A: 
-				osoite = "http://www.hs.fi/rss/?osastot=kotimaa";
+				address = "http://www.hs.fi/rss/?osastot=kotimaa";
 				break;
 			case B: 
-				osoite = "http://www.hs.fi/rss/?osastot=ulkomaat";
+				address = "http://www.hs.fi/rss/?osastot=ulkomaat";
 				break;
 			case C: 
-				osoite = "http://www.hs.fi/rss/?osastot=talous";
+				address = "http://www.hs.fi/rss/?osastot=talous";
 				break;
 			case D: 
-				osoite = "http://www.hs.fi/rss/?osastot=urheilu";
+				address = "http://www.hs.fi/rss/?osastot=urheilu";
 				break;
 		}
-		urli = new URL(osoite);
+		url = new URL(address);
 	}
 	
 	public URL returnURL() {
-		return urli;
+		return url;
 	}
 
 }

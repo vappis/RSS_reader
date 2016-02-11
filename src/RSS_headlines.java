@@ -1,16 +1,16 @@
 import java.io.*;
 
-public class RSS_otsikot {
+public class RSS_headlines {
 
 	public static void main(String[] args) {
-		valikko();
-		RSSParse feedi = new RSSParse(valintaLoop());
-		feedi.parse();
-		feedi.print();
+		menu();
+		RSSParse feed = new RSSParse(choiceLoop());
+		feed.parse();
+		feed.print();
 	}
 	
-	public static void valikko() {
-		System.out.println("Tama ohjelma hakee uutisotsikoita hs.fi:n rss-feedeista");
+	public static void menu() {
+		System.out.println("Tama ohjelma hakee uutisotsikoita hs.fi:n RSS-feedeista");
 		System.out.println("Haetaan kymmenen uusinta uutisotsikkoa valitusta aiheesta");
 		System.out.println("1 - Kotimaa");
 		System.out.println("2 - Ulkomaat");
@@ -18,46 +18,46 @@ public class RSS_otsikot {
 		System.out.println("4 - Urheilu");
 	}
 	
-	public static Valinta valintaLoop() {
+	public static Choice choiceLoop() {
 		int a = 0;
-		Valinta valinta = null;
+		Choice choice = null;
 		boolean x = false;
 		do {
 				System.out.print("Valitse aihetta vastaava numero valilta 1-4 : ");
-				a = lue();
+				a = read();
 				switch (a)
 				{
 					case 1:
-						valinta = Valinta.A;
+						choice = Choice.A;
 						x = true;
 						break;
 					case 2: 
-						valinta = Valinta.B;
+						choice = Choice.B;
 						x = true;
 						break;
 					case 3: 
-						valinta = Valinta.C;
+						choice = Choice.C;
 						x = true;
 						break;
 					case 4: 
-						valinta = Valinta.D;
+						choice = Choice.D;
 						x = true;
 						break;
 				}
 		}
 		while (x == false);
-		System.out.println("Valitsit vaihtoehdon "+ valinta.palautaInt());
-		return valinta;
+		System.out.println("Valitsit vaihtoehdon "+ choice.returnInt());
+		return choice;
 	}
 	
-	public static int lue() {
-        String jono = "";
+	public static int read() {
+        String line = "";
         int x = 0;
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         try {
-        	jono = input.readLine();
-        	x = Integer.parseInt(jono);
-        	if  (x > 0 && x < Valinta.palautaValinnat()) 
+        	line = input.readLine();
+        	x = Integer.parseInt(line);
+        	if  (x > 0 && x <= Choice.returnChoices()) 
         		input.close();
         	else 
         		System.out.println("Virheellinen valinta");
